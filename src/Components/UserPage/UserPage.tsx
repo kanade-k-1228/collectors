@@ -49,9 +49,11 @@ function UserPageContent(props: { user: User; isMypage: boolean }) {
           <CollectionCard key={i} userId={userId} collection={collection} />
         ))}
       </Grid>
-      <Stack spacing={2} sx={{ position: "fixed", bottom: 0, right: 0, padding: 3 }} direction="column-reverse">
-        <AddCollection userId={userId} />
-      </Stack>
+      {props.isMypage && (
+        <Stack spacing={2} sx={{ position: "fixed", bottom: 0, right: 0, padding: 3 }} direction="column-reverse">
+          <AddCollection userId={userId} />
+        </Stack>
+      )}
     </Box>
   );
 }
