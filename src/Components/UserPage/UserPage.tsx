@@ -18,7 +18,8 @@ export function UserPage() {
     return <Loading />;
   } else {
     if (userId && user) {
-      return <UserPageContent isMypage={userId === user.uid} user={user} />;
+      if (auth) return <UserPageContent isMypage={userId === auth.uid} user={user} />;
+      else return <UserPageContent user={user} />;
     } else {
       if (auth) return <Navigate to={`/user/${auth.uid}`} />;
       else return <Navigate to={`/`} />;
@@ -26,7 +27,7 @@ export function UserPage() {
   }
 }
 
-function UserPageContent(props: { user: User; isMypage: boolean }) {
+function UserPageContent(props: { user: User; isMypage?: boolean }) {
   const user = props.user;
   const userId = props.user.uid;
   const userName = props.user.name;
