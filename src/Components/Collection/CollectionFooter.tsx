@@ -17,7 +17,7 @@ export function CollectionFooter(props: { viewTipe: string; onChange: (value: "m
         }}
         elevation={3}
       >
-        <BottomNavigation value={props.viewTipe} onChange={(_, v) => props.onChange(v)}>
+        <BottomNavigation showLabels value={props.viewTipe} onChange={(_, v) => props.onChange(v)}>
           <BottomNavigationAction label="List" value="list" icon={<FormatListBulletedIcon />} />
           <BottomNavigationAction label="Photo" value="photo" icon={<InsertPhotoIcon />} />
           <BottomNavigationAction label="Map" value="map" icon={<LocationOnIcon />} />
