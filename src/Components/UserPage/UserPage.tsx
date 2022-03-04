@@ -43,7 +43,7 @@ function UserPageContent(props: { user: User; isMypage: boolean }) {
         }}
       >
         <UserHeader user={user} />
-        <ImageList>
+        <ImageList style={{ margin: 0 }}>
           {collections.map((collection, i) => (
             <CollectionCard key={i} userId={userId} collection={collection} />
           ))}
