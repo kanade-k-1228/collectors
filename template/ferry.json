@@ -1,0 +1,80 @@
+{
+  "name": "長距離フェリー",
+  "mapCenter": {"lat": 35.879884, "lng": 137.957625},
+  "mapZoom": 5,
+  "img": "https://www.hankyu-travel.com/attending/kokunai/ferry/company/images/smp/img-01.png",
+  "items": [
+    {
+      "title": "商船三井",
+      "subtitle": "苫小牧～大洗",
+      "mapMarker": {
+        "type": "line",
+        "points": [
+          {"lat":42.637759, "lng":141.636374},
+          {"lat":36.309732, "lng":140.575894}
+        ]
+      }
+    },
+    {
+      "title": "太平洋フェリー",
+      "subtitle": "苫小牧～仙台～名古屋",
+      "mapMarker": {
+        "type": "line",
+        "points":[
+          {"lat":42.63776372903818, "lng":141.63640610709632},
+          {"lat":38.27345465353537, "lng":141.00589251372995},
+          {"lat":35.05938960825173, "lng":136.84741538605948}
+        ]
+      }
+    },
+    {
+      "title": "新日本海フェリー",
+      "subtitle": "苫小牧東～秋田～新潟～敦賀",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "新日本海フェリー",
+      "subtitle": "小樽～新潟",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "新日本海フェリー",
+      "subtitle": "小樽～舞鶴",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "フェリーさんふらわあ",
+      "subtitle": "大阪～別府",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "新日本海フェリー",
+      "subtitle": "泉大津～新門司",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "オーシャン東九フェリー",
+      "subtitle": "東京～徳島～",
+      "mapMarker": {
+        "type": "point"
+      }
+    },
+    {
+      "title": "東京九州フェリー",
+      "subtitle": "横須賀～新門司",
+      "mapMarker": {
+        "type": "point"
+      }
+    }
+  ]
+}
