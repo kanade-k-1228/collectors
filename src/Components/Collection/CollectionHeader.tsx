@@ -1,4 +1,3 @@
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import AppsIcon from "@mui/icons-material/Apps";
 import { Container, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
@@ -27,7 +26,6 @@ export function CollectionHeader(props: { title: string; jumpTo: string }) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {props.title}
             </Typography>
-            <AccountCircle />
           </Toolbar>
         </Container>
       </AppBar>

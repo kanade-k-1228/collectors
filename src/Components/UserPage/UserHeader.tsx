@@ -1,5 +1,4 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
@@ -34,7 +33,7 @@ export function UserHeader(props: { user: User }) {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={handleMenu}>
-              <MenuIcon />
+              <AccountCircle />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -59,7 +58,6 @@ export function UserHeader(props: { user: User }) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {title}
             </Typography>
-            <AccountCircle />
           </Toolbar>
         </Container>
       </AppBar>

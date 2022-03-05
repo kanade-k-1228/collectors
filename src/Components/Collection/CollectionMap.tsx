@@ -1,6 +1,6 @@
 import { LatLngExpression } from "leaflet";
 import * as React from "react";
-import { MapContainer, Marker, Polygon, Polyline, Popup, TileLayer, useMapEvents } from "react-leaflet";
+import { Circle, MapContainer, Polygon, Polyline, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import { Collection, GeoPoint, Item } from "../../Logic/firestore";
 
 export function CollectionMap(props: { collection: Collection }) {
@@ -22,27 +22,42 @@ export function CollectionMap(props: { collection: Collection }) {
 }
 
 function ItemMarker(props: { item: Item; mapCenter: GeoPoint }) {
-  const map = useMapEvents({});
   const marker = props.item.mapMarker?.type;
-  const position = props.item.mapMarker?.center ?? props.mapCenter;
-  const points = (props.item.mapMarker?.points?.map((point) => [point.lat, point.lng]) ?? [[]]) as LatLngExpression[];
   return (
     <>
-      {marker === "point" && (
-        <Marker position={position}>
-          <Popup onOpen={() => map.flyTo(position)}>{props.item.title}</Popup>
-        </Marker>
-      )}
-      {marker === "line" && (
-        <Polyline positions={points}>
-          <Popup>{props.item.title}</Popup>
-        </Polyline>
-      )}
-      {marker === "polygon" && (
-        <Polygon positions={points}>
-          <Popup>{props.item.title}</Popup>
-        </Polygon>
-      )}
+      {marker === "point" && <PointMarker item={props.item} defaultPoint={props.mapCenter} />}
+      {marker === "line" && <LineMarker item={props.item} />}
+      {marker === "polygon" && <PolygonMarker item={props.item} />}
     </>
+  );
+}
+
+function PointMarker(props: { item: Item; defaultPoint: GeoPoint }) {
+  const point = props.item.mapMarker?.center ?? props.defaultPoint;
+  const markerSize = 400;
+  const markerColor = "green";
+  const map = useMapEvents({});
+  return (
+    <Circle center={point} radius={markerSize} color={markerColor}>
+      <Popup onOpen={() => map.flyTo(point)}>{props.item.title}</Popup>
+    </Circle>
+  );
+}
+
+function LineMarker(props: { item: Item }) {
+  const points = (props.item.mapMarker?.points?.map((point) => [point.lat, point.lng]) ?? [[]]) as LatLngExpression[];
+  return (
+    <Polyline positions={points}>
+      <Popup>{props.item.title}</Popup>
+    </Polyline>
+  );
+}
+
+function PolygonMarker(props: { item: Item }) {
+  const points = (props.item.mapMarker?.points?.map((point) => [point.lat, point.lng]) ?? [[]]) as LatLngExpression[];
+  return (
+    <Polygon positions={points}>
+      <Popup>{props.item.title}</Popup>
+    </Polygon>
   );
 }
