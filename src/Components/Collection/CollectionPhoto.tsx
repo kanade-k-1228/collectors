@@ -5,7 +5,10 @@ import { noimg } from "../../consts";
 import { Collection, Item } from "../../Logic/firestore";
 import { ItemDialog } from "./ItemDialog";
 
-export function CollectionPhoto(props: { collection: Collection }) {
+export function CollectionPhoto(props: {
+  collection: Collection;
+  editCollection?: (newCollectionData: Collection) => Promise<void>;
+}) {
   return (
     <ImageList>
       {props.collection.items.map((item, i) => (

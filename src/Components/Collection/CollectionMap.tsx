@@ -3,7 +3,10 @@ import * as React from "react";
 import { Circle, MapContainer, Polygon, Polyline, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import { Collection, GeoPoint, Item } from "../../Logic/firestore";
 
-export function CollectionMap(props: { collection: Collection }) {
+export function CollectionMap(props: {
+  collection: Collection;
+  editCollection?: (newCollectionData: Collection) => Promise<void>;
+}) {
   return (
     <MapContainer
       style={{ width: "100%", height: "100%" }}

@@ -5,7 +5,10 @@ import { Collection, Item } from "../../Logic/firestore";
 import { AddItem } from "./AddItem";
 import { ItemDialog } from "./ItemDialog";
 
-export function CollectionList(props: { collection: Collection }) {
+export function CollectionList(props: {
+  collection: Collection;
+  editCollection?: (newCollectionData: Collection) => Promise<void>;
+}) {
   const items = props.collection.items;
   return (
     <>
@@ -34,7 +37,6 @@ export function CollectionList(props: { collection: Collection }) {
 
 function Row(props: { item: Item }) {
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <TableRow onClick={() => setOpen(true)}>

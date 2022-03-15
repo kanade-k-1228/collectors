@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { setDoc } from "firebase/firestore";
 import * as React from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -15,19 +16,26 @@ import { CollectionPhoto } from "./CollectionPhoto";
 
 export function CollectionHome() {
   const { userId, collectionId } = useParams();
+  const userRef = userId ? database.user(userId) : undefined;
+  const collectionRef = userId && collectionId ? database.collection(userId, collectionId) : undefined;
   const [auth, loadingAuth] = useAuthState(firebaseAuth);
-  const [user, loadingUser] = useDocumentData<User>(userId ? database.user(userId) : undefined);
-  const [collection, loadingCollection] = useDocumentData<Collection>(
-    userId && collectionId ? database.collection(userId, collectionId) : undefined,
-  );
+  const [user, loadingUser] = useDocumentData<User>(userRef);
+  const [collection, loadingCollection] = useDocumentData<Collection>(collectionRef);
+  const editCollection = collectionRef
+    ? (newCollectionData: Collection) => setDoc(collectionRef, newCollectionData)
+    : undefined;
   if (loadingAuth || loadingUser || loadingCollection) {
     return <Loading />;
   } else if (collection && user) {
-    return <CollectionHomeContent collection={collection} user={user} />;
+    return <CollectionHomeContent collection={collection} user={user} editCollection={editCollection} />;
   } else return <Navigate to={`/`} />;
 }
 
-function CollectionHomeContent(props: { collection: Collection; user: User }) {
+function CollectionHomeContent(props: {
+  collection: Collection;
+  user: User;
+  editCollection?: (newCollectionData: Collection) => Promise<void>;
+}) {
   const { collection, user } = props;
   const [viewType, setViewType] = useState<"list" | "photo" | "map">("photo");
   return (
@@ -41,9 +49,9 @@ function CollectionHomeContent(props: { collection: Collection; user: User }) {
       <CollectionHeader title={collection.name} jumpTo={`/user/${user.uid}`} />
       {collection ? (
         <>
-          {viewType === "list" && <CollectionList collection={collection} />}
-          {viewType === "photo" && <CollectionPhoto collection={collection} />}
-          {viewType === "map" && <CollectionMap collection={collection} />}
+          {viewType === "list" && <CollectionList collection={collection} editCollection={props.editCollection} />}
+          {viewType === "photo" && <CollectionPhoto collection={collection} editCollection={props.editCollection} />}
+          {viewType === "map" && <CollectionMap collection={collection} editCollection={props.editCollection} />}
         </>
       ) : (
         <Loading />
