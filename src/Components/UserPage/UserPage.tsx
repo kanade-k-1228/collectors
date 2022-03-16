@@ -44,7 +44,6 @@ function UserPageContent(props: { user: User; isMypage?: boolean }) {
         }}
       >
         <UserHeader user={user} />
-
         <Grid container spacing={1} p={1}>
           {collections.map((collection, i) => (
             <CollectionCard key={i} userId={userId} collection={collection} />
@@ -64,9 +63,7 @@ function CollectionCard(props: { userId: string; collection: Collection }) {
   const navigate = useNavigate();
   const onClick = () => navigate(`/user/${props.userId}/collection/${props.collection.cid}`);
   const title = props.collection.name;
-  const subtitle = props.collection.name;
   const img = props.collection.img ?? noimg;
-  const color = "red";
   return (
     <Grid
       item
@@ -91,15 +88,29 @@ function CollectionCard(props: { userId: string; collection: Collection }) {
           position: "absolute",
           width: "100%",
           height: "100%",
-          overflow: "hidden",
           paddingRight: 1,
           paddingBottom: 1,
         }}
       >
-        <Card sx={{ padding: 0, height: "100%", borderRadius: 8 }}>
+        <Card
+          sx={{
+            padding: 0,
+            height: "100%",
+            borderRadius: 4,
+            position: "relative",
+          }}
+        >
           <CardMedia height="100%" component="img" image={img} sx={{ objectFit: "cover", width: "100%" }} />
-          <Box sx={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
-            <Typography gutterBottom variant="h5" align="center" m={0} sx={{ fontWeight: "bold", color: "#FFFFFF" }}>
+          <Box
+            sx={{
+              position: "absolute",
+              bottom: 0,
+              width: "100%",
+              backgroundColor: "rgba(0,0,0,0.3)",
+              padding: 1,
+            }}
+          >
+            <Typography align="center" m={0} sx={{ color: "#FFFFFF" }}>
               {title}
             </Typography>
           </Box>
