@@ -1,0 +1,218 @@
+{
+  "name": "京浜東北線",
+  "mapCenter": { "lat": 35.68105006688297, "lng": 139.7319166729243 },
+  "mapZoom": 12,
+  "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/JR_JK_line_symbol.svg/800px-JR_JK_line_symbol.svg.png",
+  "items": [
+    {
+      "title": "大宮",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.681397525699865, "lng": 139.7669145199096 }
+      }
+    },
+    {
+      "title": "さいたま新都心",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.69192692826147, "lng": 139.77072133321303 }
+      }
+    },
+    {
+      "title": "与野",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.69838873035767, "lng": 139.7730534350525 }
+      }
+    },
+    {
+      "title": "北浦和",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.70755133651307, "lng": 139.77476821583332 }
+      }
+    },
+    {
+      "title": "浦和",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.7135663350537, "lng": 139.7760714492134 }
+      }
+    },
+    {
+      "title": "南浦和",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.72152994027749, "lng": 139.77809489051447 }
+      }
+    },
+    {
+      "title": "蕨",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.728212071711454, "lng": 139.77065274198563 }
+      }
+    },
+    {
+      "title": "西川口",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.732415958903346, "lng": 139.76670874622238 }
+      }
+    },
+    {
+      "title": "川口",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.73817041664526, "lng": 139.76077748620162 }
+      }
+    },
+    {
+      "title": "赤羽",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.736572421784096, "lng": 139.7469612432477 }
+      }
+    },
+    {
+      "title": "東十条",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.73341125246888, "lng": 139.73922683323246 }
+      }
+    },
+    {
+      "title": "大塚",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.73170329403109, "lng": 139.72846916590402 }
+      }
+    },
+    {
+      "title": "池袋",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.72952829790409, "lng": 139.71076509214345 }
+      }
+    },
+    {
+      "title": "目白",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.7211945221275, "lng": 139.70654475465926 }
+      }
+    },
+    {
+      "title": "高田馬場",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.7135727195866, "lng": 139.7040718030811 }
+      }
+    },
+    {
+      "title": "新大久保",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.701382343193664, "lng": 139.7002302727875 }
+      }
+    },
+    {
+      "title": "新宿",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.68958765650263, "lng": 139.70050254648805 }
+      }
+    },
+    {
+      "title": "代々木",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.68312834586206, "lng": 139.70228770363715 }
+      }
+    },
+    {
+      "title": "原宿",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.67008041304668, "lng": 139.7024753408306 }
+      }
+    },
+    {
+      "title": "渋谷",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.65803464546068, "lng": 139.70145844143917 }
+      }
+    },
+    {
+      "title": "恵比寿",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.64694557095117, "lng": 139.70991810522355 }
+      }
+    },
+    {
+      "title": "目黒",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.63409679138784, "lng": 139.71569512941866 }
+      }
+    },
+    {
+      "title": "五反田",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.62617245141773, "lng": 139.72376095530296 }
+      }
+    },
+    {
+      "title": "大崎",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.619899254183345, "lng": 139.72809406770568 }
+      }
+    },
+    {
+      "title": "品川",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.62847324140264, "lng": 139.73856842313737 }
+      }
+    },
+    {
+      "title": "高輪ゲートウェイ",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.635533549685206, "lng": 139.7406970773731 }
+      }
+    },
+    {
+      "title": "田町",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.64573693698353, "lng": 139.7475044020652 }
+      }
+    },
+    {
+      "title": "浜松町",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.6563030344272, "lng": 139.7573951768871 }
+      }
+    },
+    {
+      "title": "新橋",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.66647126744079, "lng": 139.75826598062295 }
+      }
+    },
+    {
+      "title": "有楽町",
+      "mapMarker": {
+        "type": "point",
+        "center": { "lat": 35.675007627579596, "lng": 139.76299811613399 }
+      }
+    }
+  ]
+}
