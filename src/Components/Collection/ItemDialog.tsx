@@ -6,7 +6,7 @@ import { noimg } from "../../consts";
 import { storage } from "../../Logic/firebase";
 import { Item } from "../../Logic/firestore";
 
-export function ItemDialog(props: { isOpen: boolean; onClose: () => void; item: Item; addImg?: (file: File) => void }) {
+export function ItemDialog(props: { isOpen: boolean; onClose: () => void; item: Item; editItem?: (newItem: Item) => Promise<void> }) {
   const img = props.item.img ? props.item.img[0] : noimg ?? noimg;
   const title = props.item.title;
   const subtitle = props.item.subtitle;
@@ -20,9 +20,15 @@ export function ItemDialog(props: { isOpen: boolean; onClose: () => void; item: 
       const storageRef = ref(storage, `${time}.${fileType}`);
       uploadBytes(storageRef, file)
         .then((snapshot) => getDownloadURL(snapshot.ref))
-        .then((url) => console.log(url));
+        .then((url) => {
+          console.log(url);
+          const newImg = props.item.img ? [...props.item.img, url] : [url];
+          console.log(newImg);
+          return props.editItem ? props.editItem({ ...props.item, img: newImg }) : undefined;
+        });
     }
   };
+
   return (
     <Dialog open={props.isOpen} onClose={props.onClose}>
       <Button component="label" sx={{ padding: 0 }}>

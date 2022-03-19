@@ -5,10 +5,7 @@ import { Collection, Item } from "../../Logic/firestore";
 import { AddItem } from "./AddItem";
 import { ItemDialog } from "./ItemDialog";
 
-export function CollectionList(props: {
-  collection: Collection;
-  editCollection?: (newCollectionData: Collection) => Promise<void>;
-}) {
+export function CollectionList(props: { collection: Collection; editCollection?: (newCollectionData: Collection) => Promise<void>; editItem?: (itemNo: number) => (newItem: Item) => Promise<void> }) {
   const items = props.collection.items;
   return (
     <>
@@ -23,7 +20,7 @@ export function CollectionList(props: {
           </TableHead>
           <TableBody>
             {items.map((item, i) => (
-              <Row key={i} item={item} />
+              <ItemRow key={i} item={item} editItem={props.editItem ? props.editItem(i) : undefined} />
             ))}
           </TableBody>
         </Table>
@@ -35,7 +32,7 @@ export function CollectionList(props: {
   );
 }
 
-function Row(props: { item: Item }) {
+function ItemRow(props: { item: Item; editItem?: (newItem: Item) => Promise<void> }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -44,7 +41,7 @@ function Row(props: { item: Item }) {
         <TableCell>{props.item.subtitle}</TableCell>
         <TableCell>{props.item.date}</TableCell>
       </TableRow>
-      <ItemDialog isOpen={open} onClose={() => setOpen(false)} item={props.item} />
+      <ItemDialog isOpen={open} onClose={() => setOpen(false)} item={props.item} editItem={props.editItem} />
     </>
   );
 }

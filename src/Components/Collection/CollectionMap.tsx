@@ -3,20 +3,10 @@ import * as React from "react";
 import { Circle, MapContainer, Polygon, Polyline, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import { Collection, GeoPoint, Item } from "../../Logic/firestore";
 
-export function CollectionMap(props: {
-  collection: Collection;
-  editCollection?: (newCollectionData: Collection) => Promise<void>;
-}) {
+export function CollectionMap(props: { collection: Collection; editCollection?: (newCollectionData: Collection) => Promise<void>; editItem?: (itemNo: number) => (newItem: Item) => Promise<void> }) {
   return (
-    <MapContainer
-      style={{ width: "100%", height: "100%" }}
-      center={props.collection.mapCenter}
-      zoom={props.collection.mapZoom}
-    >
-      <TileLayer
-        attribution='&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <MapContainer style={{ width: "100%", height: "100%" }} center={props.collection.mapCenter} zoom={props.collection.mapZoom}>
+      <TileLayer attribution='&copy;<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {props.collection.items.map((item, i) => (
         <ItemMarker key={i} item={item} mapCenter={props.collection.mapCenter} />
       ))}

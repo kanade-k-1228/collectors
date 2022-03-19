@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { Navigate, useParams } from "react-router-dom";
 import { firebaseAuth } from "../../Logic/firebase";
-import { Collection, database, User } from "../../Logic/firestore";
+import { Collection, database, Item, User } from "../../Logic/firestore";
 import { Loading } from "../Loading";
 import { CollectionFooter } from "./CollectionFooter";
 import { CollectionHeader } from "./CollectionHeader";
@@ -21,13 +21,19 @@ export function CollectionHome() {
   const [auth, loadingAuth] = useAuthState(firebaseAuth);
   const [user, loadingUser] = useDocumentData<User>(userRef);
   const [collection, loadingCollection] = useDocumentData<Collection>(collectionRef);
-  const editCollection = collectionRef
-    ? (newCollectionData: Collection) => setDoc(collectionRef, newCollectionData)
-    : undefined;
+  const editCollection = collectionRef ? (newCollectionData: Collection) => setDoc(collectionRef, newCollectionData) : undefined;
+  const editItem =
+    collectionRef && collection
+      ? (itemNo: number) => (newItem: Item) =>
+          setDoc(collectionRef, {
+            ...collection,
+            items: collection.items.map((item, i) => (itemNo === i ? newItem : item)),
+          })
+      : undefined;
   if (loadingAuth || loadingUser || loadingCollection) {
     return <Loading />;
   } else if (collection && user) {
-    return <CollectionHomeContent collection={collection} user={user} editCollection={editCollection} />;
+    return <CollectionHomeContent collection={collection} user={user} editCollection={editCollection} editItem={editItem} />;
   } else return <Navigate to={`/`} />;
 }
 
@@ -35,6 +41,7 @@ function CollectionHomeContent(props: {
   collection: Collection;
   user: User;
   editCollection?: (newCollectionData: Collection) => Promise<void>;
+  editItem?: (itemNo: number) => (newItem: Item) => Promise<void>;
 }) {
   const { collection, user } = props;
   const [viewType, setViewType] = useState<"list" | "photo" | "map">("photo");
@@ -49,9 +56,9 @@ function CollectionHomeContent(props: {
       <CollectionHeader title={collection.name} jumpTo={`/user/${user.uid}`} />
       {collection ? (
         <>
-          {viewType === "list" && <CollectionList collection={collection} editCollection={props.editCollection} />}
-          {viewType === "photo" && <CollectionPhoto collection={collection} editCollection={props.editCollection} />}
-          {viewType === "map" && <CollectionMap collection={collection} editCollection={props.editCollection} />}
+          {viewType === "list" && <CollectionList collection={collection} editCollection={props.editCollection} editItem={props.editItem} />}
+          {viewType === "photo" && <CollectionPhoto collection={collection} editCollection={props.editCollection} editItem={props.editItem} />}
+          {viewType === "map" && <CollectionMap collection={collection} editCollection={props.editCollection} editItem={props.editItem} />}
         </>
       ) : (
         <Loading />

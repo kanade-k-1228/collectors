@@ -5,20 +5,17 @@ import { noimg } from "../../consts";
 import { Collection, Item } from "../../Logic/firestore";
 import { ItemDialog } from "./ItemDialog";
 
-export function CollectionPhoto(props: {
-  collection: Collection;
-  editCollection?: (newCollectionData: Collection) => Promise<void>;
-}) {
+export function CollectionPhoto(props: { collection: Collection; editCollection?: (newCollectionData: Collection) => Promise<void>; editItem?: (itemNo: number) => (newItem: Item) => Promise<void> }) {
   return (
     <Grid container spacing={1} p={1}>
       {props.collection.items.map((item, i) => (
-        <PhotoItem item={item} key={i} />
+        <PhotoItem item={item} key={i} editItem={props.editItem ? props.editItem(i) : undefined} />
       ))}
     </Grid>
   );
 }
 
-function PhotoItem(props: { item: Item }) {
+function PhotoItem(props: { item: Item; editItem?: (newItem: Item) => Promise<void> }) {
   const img = props.item.img ? props.item.img[0] : noimg ?? noimg;
   const title = props.item.title;
   const subtitle = props.item.subtitle;
@@ -80,7 +77,7 @@ function PhotoItem(props: { item: Item }) {
           </Card>
         </Box>
       </Grid>
-      <ItemDialog isOpen={open} onClose={() => setOpen(false)} item={props.item} />
+      <ItemDialog isOpen={open} onClose={() => setOpen(false)} item={props.item} editItem={props.editItem} />
     </>
   );
 }
